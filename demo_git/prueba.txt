@@ -1,3 +1,21 @@
-Primer línea del archivo
-Segunda línea del archivo
-Tercera línea del archivo
+
+echo "# SIS257 2023-" >> README.md
+git init
+git add .
+git commit -m 'Primer commit'
+git branch -M main
+git remote add orgin https://github.com/enevaca/sis257_2023_2.git
+git push -u origin main
+
+Otros
+mkdir demo_git   --> crear directorio
+cd demo_git      --> movernos al directorio demo_git
+touch prueba.txt --> crear archivo
+nano demo        --> editar archivo, Ctrl+O guardar, Ctrl+X salir
+
+Estudiantes
+git clone https://github.com/enevaca/sis257_2023_2.git
+git pull
+cat demo_git/prueba.txt
+git checkout demo_git --
+git checkout main
