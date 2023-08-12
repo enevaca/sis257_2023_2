@@ -12,6 +12,9 @@ mkdir demo_git   --> crear directorio
 cd demo_git      --> movernos al directorio demo_git
 touch prueba.txt --> crear archivo
 nano demo        --> editar archivo, Ctrl+O guardar, Ctrl+X salir
+ls               --> listar archivos en un directorio
+mv               --> cambiar de nombre o mover un archivo
+rm               --> eliminar un archivo
 
 Estudiantes
 git clone https://github.com/enevaca/sis257_2023_2.git
