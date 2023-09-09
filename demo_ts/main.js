@@ -3,6 +3,8 @@
 /* Esto es un comentario
   en múltiples líneas */
 //console.log('Hola TypeScript!!!');
+Object.defineProperty(exports, "__esModule", { value: true });
+const poo_1 = require("./poo");
 // Tipos de Datos
 // Boolean
 let esActivo = true; // El ámbito es local, funciona dentro del scope (función, ciclo, if, {})
@@ -84,3 +86,8 @@ function saludar(nombre) {
 }
 saludar('Maria');
 console.log(juan);
+// POO
+let persona = new poo_1.Persona('123', 'Juan', 'Pérez', new Date('1999-08-06'));
+persona.saludar();
+let estudiante = new poo_1.Estudiante('369', 'Carlos', 'Gil', new Date(), '24-256');
+estudiante.saludar();

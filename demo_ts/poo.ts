@@ -1,4 +1,4 @@
-class Persona {
+export class Persona {
   constructor(
     public cedulaIdentidad: string,
     public nombre: string,
@@ -11,7 +11,7 @@ class Persona {
   }
 }
 
-class Estudiante extends Persona {
+export class Estudiante extends Persona {
   public carnetUniversitario: string;
   constructor(cedulaIdentidad: string, 
     nombre: string, 

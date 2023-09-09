@@ -3,6 +3,8 @@
   en múltiples líneas */
 //console.log('Hola TypeScript!!!');
 
+import { Estudiante, Persona } from "./poo";
+
 // Tipos de Datos
 // Boolean
 let esActivo: boolean = true;     // El ámbito es local, funciona dentro del scope (función, ciclo, if, {})
@@ -78,3 +80,10 @@ function saludar(nombre: string): void {
 }
 saludar('Maria');
 console.log(juan);
+
+// POO
+let persona: Persona = new Persona('123', 'Juan', 'Pérez', new Date('1999-08-06'));
+persona.saludar();
+
+let estudiante: Estudiante = new Estudiante('369', 'Carlos', 'Gil', new Date(), '24-256');
+estudiante.saludar();
