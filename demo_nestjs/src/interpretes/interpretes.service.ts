@@ -1,26 +1,63 @@
-import { Injectable } from '@nestjs/common';
+import {
+  ConflictException,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 import { CreateInterpreteDto } from './dto/create-interprete.dto';
 import { UpdateInterpreteDto } from './dto/update-interprete.dto';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Interprete } from './entities/interprete.entity';
+import { Repository } from 'typeorm';
 
 @Injectable()
 export class InterpretesService {
-  create(createInterpreteDto: CreateInterpreteDto) {
-    return 'This action adds a new interprete';
+  constructor(
+    @InjectRepository(Interprete)
+    private interpreteRepository: Repository<Interprete>,
+  ) {}
+
+  async create(createInterpreteDto: CreateInterpreteDto): Promise<Interprete> {
+    const existeInterprete = await this.interpreteRepository.findOneBy({
+      nombre: createInterpreteDto.nombre,
+      nacionalidad: createInterpreteDto.nacionalidad,
+    });
+
+    if (existeInterprete) {
+      throw new ConflictException('El intérprete ya existe');
+    }
+
+    return this.interpreteRepository.save({
+      nombre: createInterpreteDto.nombre.trim(),
+      nacionalidad: createInterpreteDto.nacionalidad.trim(),
+    });
   }
 
-  findAll() {
-    return `This action returns all interpretes`;
+  async findAll(): Promise<Interprete[]> {
+    return this.interpreteRepository.find();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} interprete`;
+  async findOne(id: number): Promise<Interprete> {
+    const interprete = await this.interpreteRepository.findOneBy({ id });
+    if (!interprete) {
+      throw new NotFoundException(`No existe el intérprete ${id}`);
+    }
+    return interprete;
   }
 
-  update(id: number, updateInterpreteDto: UpdateInterpreteDto) {
-    return `This action updates a #${id} interprete`;
+  async update(id: number, updateInterpreteDto: UpdateInterpreteDto): Promise<Interprete> {
+    const interprete = await this.interpreteRepository.findOneBy({ id });
+    if (!interprete) {
+      throw new NotFoundException(`No existe el intérprete ${id}`);
+    }
+    const interpreteUpdate = Object.assign(interprete, updateInterpreteDto);
+    return this.interpreteRepository.save(interpreteUpdate);
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} interprete`;
+  async remove(id: number) {
+    const interprete = await this.interpreteRepository.findOneBy({ id });
+    if (!interprete) {
+      throw new NotFoundException(`No existe el intérprete ${id}`);
+    }
+    return this.interpreteRepository.delete(id);
   }
 }

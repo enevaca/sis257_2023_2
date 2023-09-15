@@ -1,1 +1,4 @@
-export class CreateInterpreteDto {}
+export class CreateInterpreteDto {
+  readonly nombre: string;
+  readonly nacionalidad: string;
+}
