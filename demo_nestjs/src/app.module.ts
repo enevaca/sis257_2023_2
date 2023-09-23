@@ -1,22 +1,22 @@
 import { Module } from '@nestjs/common';
+import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { InterpretesModule } from './interpretes/interpretes.module';
 import { GenerosModule } from './generos/generos.module';
-import { TypeOrmModule } from '@nestjs/typeorm';
-import { Interprete } from './interpretes/entities/interprete.entity';
-import { Genero } from './generos/entities/genero.entity';
+import { InterpretesModule } from './interpretes/interpretes.module';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
   imports: [
+    ConfigModule.forRoot(),
     TypeOrmModule.forRoot({
-      type: 'mysql',
-      host: 'localhost',
-      port: 3306,
-      username: 'usrsis257',
-      password: 'Sis257...',
-      database: 'db_sis257',
-      entities: [Interprete, Genero],
+      type: process.env.DB_TYPE as any,
+      host: process.env.DB_HOST,
+      port: +process.env.DB_PORT,
+      username: process.env.DB_USERNAME,
+      password: process.env.DB_PASSWORD,
+      database: process.env.DB_NAME,
+      entities: [__dirname + '**/*.entity.ts'],
       synchronize: true,
       autoLoadEntities: true,
     }),
