@@ -5,6 +5,7 @@ import { AppService } from './app.service';
 import { GenerosModule } from './generos/generos.module';
 import { InterpretesModule } from './interpretes/interpretes.module';
 import { ConfigModule } from '@nestjs/config';
+import { AlbumesModule } from './albumes/albumes.module';
 
 @Module({
   imports: [
@@ -22,6 +23,7 @@ import { ConfigModule } from '@nestjs/config';
     }),
     InterpretesModule,
     GenerosModule,
+    AlbumesModule,
   ],
   controllers: [AppController],
   providers: [AppService],
