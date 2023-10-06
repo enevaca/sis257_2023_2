@@ -1,5 +1,5 @@
 import { Album } from "src/albumes/entities/album.entity";
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 
 @Entity('interpretes')
 export class Interprete {
@@ -11,6 +11,12 @@ export class Interprete {
 
   @Column({ type: 'varchar', length: 50, nullable: false })
   nacionalidad: string;
+
+  @CreateDateColumn({ name: 'fecha_creacion' })
+  fechaCreacion: Date;
+
+  @UpdateDateColumn({ name: 'fecha_modificacion' })
+  fechaModificacion: Date;
 
   @OneToMany(() => Album, (album) => album.interprete)
   albumes: Album[];

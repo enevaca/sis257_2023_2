@@ -6,6 +6,8 @@ import { GenerosModule } from './generos/generos.module';
 import { InterpretesModule } from './interpretes/interpretes.module';
 import { ConfigModule } from '@nestjs/config';
 import { AlbumesModule } from './albumes/albumes.module';
+import { CancionesModule } from './canciones/canciones.module';
+import { UsuariosModule } from './usuarios/usuarios.module';
 
 @Module({
   imports: [
@@ -24,6 +26,8 @@ import { AlbumesModule } from './albumes/albumes.module';
     InterpretesModule,
     GenerosModule,
     AlbumesModule,
+    CancionesModule,
+    UsuariosModule,
   ],
   controllers: [AppController],
   providers: [AppService],
