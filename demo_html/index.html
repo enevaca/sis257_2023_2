@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Demo SIS257</title>
+  <link rel="stylesheet" href="./css/style.css">
+  <style>
+    h1 { color: yellow; text-align: center; }
+    .parrafo { font-size: 1.2rem; }
+  </style>
+</head>
+<body style="background-color: powderblue;">
+  <h1>Esto es un encabezado h1</h1>
+  <h2 id="myH2">Esto es un encabezado h2</h2>
+  <h3 class="color">Esto es un encabezado h3</h3>
+  <h4 style="background-color: hsl(240, 100%, 50%, 0.5);">Esto es un encabezado h4</h4>
+  <h5 style="background-color: rgb(50, 200, 120, 0.5);">Esto es un encabezado h5</h5>
+  <h6 style="background-color: #ffffff;">Esto es un encabezado h6</h6>
+  <p class="parrafo">Esto es un párrafo <q>Cita</q></p>
+  <a href="https://usfx.bo" target="_blank">Enlace a la USFX</a>
+  <img src="./images/linux.png" alt="Logo Linux" width="60">
+  <br>
+  <button onclick="saludo()">Click aquí</button>
+  <ol>
+    <li><b><i>Desarrollo de Aplicación Int/Internet II</i></b></li>
+    <li><b>Fundamentos de la Programación</b></li>
+    <li style="font-weight: bold;font-style: italic;">Taller II</li>
+  </ol>
+  <b>Texto en negrita</b>
+  <i>Texto en cursiva</i>
+  <del>Texto tachado</del>
+  <blockquote>Dato de blockquote</blockquote>
+  <abbr title="Universidad de San Francisco Xavier">USFX</abbr>
+  <bdo dir="rtl">Texto escrito de izquierda a derecha</bdo>
+  <!-- Esto es un comentario -->
+  
+  <script src="./js/main.js"></script>
+  <script>
+    function saludo() {
+      alert('Hola SIS257');
+    }
+  </script>
+</body>
+</html>
