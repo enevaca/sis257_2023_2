@@ -8,13 +8,12 @@ const props = defineProps<{
 }>()
 
 const ENDPOINT = props.ENDPOINT_API ?? ''
-const nombre = ref('')
-const nacionalidad = ref('')
+const descripcion = ref('')
 
-async function crearInterprete() {
+async function crearGenero() {
   await http
-    .post(ENDPOINT, { nombre: nombre.value, nacionalidad: nacionalidad.value })
-    .then(() => router.push('/interpretes'))
+    .post(ENDPOINT, { descripcion: descripcion.value })
+    .then(() => router.push('/generos'))
 }
 
 function goBack() {
@@ -28,31 +27,21 @@ function goBack() {
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><RouterLink to="/">Inicio</RouterLink></li>
         <li class="breadcrumb-item">
-          <RouterLink to="/interpretes">Intérpretes</RouterLink>
+          <RouterLink to="/generos">Géneros</RouterLink>
         </li>
         <li class="breadcrumb-item active" aria-current="page">Crear</li>
       </ol>
     </nav>
 
     <div class="row">
-      <h2>Crear Nuevo Intérprete</h2>
+      <h2>Crear Nuevo Género</h2>
     </div>
 
     <div class="row">
-      <form @submit.prevent="crearInterprete">
+      <form @submit.prevent="crearGenero">
         <div class="form-floating mb-3">
-          <input type="text" class="form-control" v-model="nombre" placeholder="Nombre" required />
-          <label for="nombre">Nombre</label>
-        </div>
-        <div class="form-floating">
-          <input
-            type="text"
-            class="form-control"
-            v-model="nacionalidad"
-            placeholder="Nacionalidad"
-            required
-          />
-          <label for="nacionalidad">Nacionalidad</label>
+          <input type="text" class="form-control" v-model="descripcion" placeholder="Nombre" required />
+          <label for="descripcion">Descripción</label>
         </div>
         <div class="text-center mt-3">
           <button type="submit" class="btn btn-primary btn-lg">

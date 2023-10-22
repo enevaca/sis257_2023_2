@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { Interprete } from '@/models/interprete'
+import type { Genero } from '@/models/genero'
 import { onMounted, ref } from 'vue'
 import http from '@/plugins/axios'
 import router from '@/router'
@@ -9,25 +9,25 @@ const props = defineProps<{
 }>()
 
 const ENDPOINT = props.ENDPOINT_API ?? ''
-var interpretes = ref<Interprete[]>([])
+var generos = ref<Genero[]>([])
 
-async function getInterpretes() {
-  interpretes.value = await http.get(ENDPOINT).then((response) => response.data)
+async function getGeneros() {
+  generos.value = await http.get(ENDPOINT).then((response) => response.data)
 }
 
 function toEdit(id: number) {
-  router.push(`/interpretes/editar/${id}`)
+  router.push(`/generos/editar/${id}`)
 }
 
 async function toDelete(id: number) {
-  var r = confirm('¿Está seguro que se desea eliminar el Intérprete?')
+  var r = confirm('¿Está seguro que se desea eliminar el Género Musical?')
   if (r == true) {
-    await http.delete(`${ENDPOINT}/${id}`).then(() => getInterpretes())
+    await http.delete(`${ENDPOINT}/${id}`).then(() => getGeneros())
   }
 }
 
 onMounted(() => {
-  getInterpretes()
+  getGeneros()
 })
 </script>
 
@@ -36,14 +36,14 @@ onMounted(() => {
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><RouterLink to="/">Inicio</RouterLink></li>
-        <li class="breadcrumb-item active" aria-current="page">Intérpretes</li>
+        <li class="breadcrumb-item active" aria-current="page">Géneros</li>
       </ol>
     </nav>
 
     <div class="row">
-      <h2>Lista de Intérpretes</h2>
+      <h2>Lista de Géneros Musicales</h2>
       <div class="col-12">
-        <RouterLink to="/interpretes/crear">
+        <RouterLink to="/generos/crear">
           <font-awesome-icon icon="fa-solid fa-plus"/> Crear Nuevo
         </RouterLink>
       </div>
@@ -54,21 +54,19 @@ onMounted(() => {
         <thead>
           <tr>
             <th scope="col">N°</th>
-            <th scope="col">Nombre</th>
-            <th scope="col">Nacionalidad</th>
+            <th scope="col">Descripción</th>
             <th scope="col">Acciones</th>
           </tr>
         </thead>
         <tbody>
-          <tr v-for="(interprete, index) in interpretes.values()" :key="interprete.id">
-            <th scope="row">{{ index + 1 }}</th>
-            <td>{{ interprete.nombre }}</td>
-            <td>{{ interprete.nacionalidad }}</td>
+          <tr v-for="(genero, index) in generos" :key="genero.id">
+            <td scope="row">{{ index +1 }}</td>
+            <td>{{ genero.descripcion }}</td>
             <td>
-              <button class="btn text-success" @click="toEdit(interprete.id)">
+              <button class="btn text-success" @click="toEdit(genero.id)">
                 <font-awesome-icon icon="fa-solid fa-edit"/>
               </button>
-              <button class="btn text-danger" @click="toDelete(interprete.id)">
+              <button class="btn text-danger" @click="toDelete(genero.id)">
                 <font-awesome-icon icon="fa-solid fa-trash"/>
               </button>
             </td>
@@ -76,6 +74,7 @@ onMounted(() => {
         </tbody>
       </table>
     </div>
+
   </div>
 </template>
 

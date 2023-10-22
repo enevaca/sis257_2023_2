@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { onMounted, ref } from 'vue'
 import http from '@/plugins/axios'
 import router from '@/router'
 
@@ -10,16 +10,30 @@ const props = defineProps<{
 const ENDPOINT = props.ENDPOINT_API ?? ''
 const nombre = ref('')
 const nacionalidad = ref('')
+const id = router.currentRoute.value.params['id']
 
-async function crearInterprete() {
+async function editarInterprete() {
   await http
-    .post(ENDPOINT, { nombre: nombre.value, nacionalidad: nacionalidad.value })
+    .patch(`${ENDPOINT}/${id}`, {
+      nombre: nombre.value,
+      nacionalidad: nacionalidad.value
+    })
     .then(() => router.push('/interpretes'))
+}
+
+async function getInterprete() {
+  await http.get(`${ENDPOINT}/${id}`).then((response) => {
+    ;(nombre.value = response.data.nombre), (nacionalidad.value = response.data.nacionalidad)
+  })
 }
 
 function goBack() {
   router.go(-1)
 }
+
+onMounted(() => {
+  getInterprete()
+})
 </script>
 
 <template>
@@ -30,16 +44,16 @@ function goBack() {
         <li class="breadcrumb-item">
           <RouterLink to="/interpretes">Intérpretes</RouterLink>
         </li>
-        <li class="breadcrumb-item active" aria-current="page">Crear</li>
+        <li class="breadcrumb-item active" aria-current="page">Editar</li>
       </ol>
     </nav>
 
     <div class="row">
-      <h2>Crear Nuevo Intérprete</h2>
+      <h2>Editar Intérprete</h2>
     </div>
 
     <div class="row">
-      <form @submit.prevent="crearInterprete">
+      <form @submit.prevent="editarInterprete">
         <div class="form-floating mb-3">
           <input type="text" class="form-control" v-model="nombre" placeholder="Nombre" required />
           <label for="nombre">Nombre</label>
@@ -56,7 +70,7 @@ function goBack() {
         </div>
         <div class="text-center mt-3">
           <button type="submit" class="btn btn-primary btn-lg">
-            <font-awesome-icon icon="fa-solid fa-floppy-disk"/> Crear
+            <font-awesome-icon icon="fa-solid fa-floppy-disk"/> Guardar
           </button>
         </div>
       </form>

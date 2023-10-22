@@ -23,11 +23,24 @@ const router = createRouter({
       component: () => import('../views/InterpreteView.vue'),
       children: [
         { path: '', component: () => import('../components/interprete/InterpreteList.vue') },
-        { path: 'crear', component: () => import('../components/interprete/InterpreteCreate.vue') }
-        // {
-        //   path: 'editar/:id',
-        //   component: () => import('../components/interprete/InterpreteEdit.vue')
-        // }
+        { path: 'crear', component: () => import('../components/interprete/InterpreteCreate.vue') },
+        {
+          path: 'editar/:id',
+          component: () => import('../components/interprete/InterpreteEdit.vue')
+        }
+      ]
+    },
+    {
+      path: '/generos',
+      name: 'generos',
+      component: () => import('../views/GeneroView.vue'),
+      children: [
+        { path: '', component: () => import('../components/genero/GeneroList.vue') },
+        { path: 'crear', component: () => import('../components/genero/GeneroCreate.vue') },
+        {
+          path: 'editar/:id',
+          component: () => import('../components/genero/GeneroEdit.vue')
+        }
       ]
     }
   ]
