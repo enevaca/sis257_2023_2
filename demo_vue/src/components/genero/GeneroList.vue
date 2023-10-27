@@ -44,7 +44,7 @@ onMounted(() => {
       <h2>Lista de Géneros Musicales</h2>
       <div class="col-12">
         <RouterLink to="/generos/crear">
-          <font-awesome-icon icon="fa-solid fa-plus"/> Crear Nuevo
+          <font-awesome-icon icon="fa-solid fa-plus" /> Crear Nuevo
         </RouterLink>
       </div>
     </div>
@@ -60,21 +60,20 @@ onMounted(() => {
         </thead>
         <tbody>
           <tr v-for="(genero, index) in generos" :key="genero.id">
-            <td scope="row">{{ index +1 }}</td>
+            <td scope="row">{{ index + 1 }}</td>
             <td>{{ genero.descripcion }}</td>
             <td>
               <button class="btn text-success" @click="toEdit(genero.id)">
-                <font-awesome-icon icon="fa-solid fa-edit"/>
+                <font-awesome-icon icon="fa-solid fa-edit" />
               </button>
               <button class="btn text-danger" @click="toDelete(genero.id)">
-                <font-awesome-icon icon="fa-solid fa-trash"/>
+                <font-awesome-icon icon="fa-solid fa-trash" />
               </button>
             </td>
           </tr>
         </tbody>
       </table>
     </div>
-
   </div>
 </template>
 

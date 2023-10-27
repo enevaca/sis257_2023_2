@@ -11,9 +11,7 @@ const ENDPOINT = props.ENDPOINT_API ?? ''
 const descripcion = ref('')
 
 async function crearGenero() {
-  await http
-    .post(ENDPOINT, { descripcion: descripcion.value })
-    .then(() => router.push('/generos'))
+  await http.post(ENDPOINT, { descripcion: descripcion.value }).then(() => router.push('/generos'))
 }
 
 function goBack() {
@@ -40,12 +38,18 @@ function goBack() {
     <div class="row">
       <form @submit.prevent="crearGenero">
         <div class="form-floating mb-3">
-          <input type="text" class="form-control" v-model="descripcion" placeholder="Nombre" required />
+          <input
+            type="text"
+            class="form-control"
+            v-model="descripcion"
+            placeholder="Nombre"
+            required
+          />
           <label for="descripcion">Descripción</label>
         </div>
         <div class="text-center mt-3">
           <button type="submit" class="btn btn-primary btn-lg">
-            <font-awesome-icon icon="fa-solid fa-floppy-disk"/> Crear
+            <font-awesome-icon icon="fa-solid fa-floppy-disk" /> Crear
           </button>
         </div>
       </form>

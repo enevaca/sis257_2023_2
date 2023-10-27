@@ -56,7 +56,7 @@ function goBack() {
         </div>
         <div class="text-center mt-3">
           <button type="submit" class="btn btn-primary btn-lg">
-            <font-awesome-icon icon="fa-solid fa-floppy-disk"/> Crear
+            <font-awesome-icon icon="fa-solid fa-floppy-disk" /> Crear
           </button>
         </div>
       </form>

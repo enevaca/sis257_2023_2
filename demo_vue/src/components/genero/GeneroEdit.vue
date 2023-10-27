@@ -14,14 +14,14 @@ const id = router.currentRoute.value.params['id']
 async function editarGenero() {
   await http
     .patch(`${ENDPOINT}/${id}`, {
-      descripcion: descripcion.value,
+      descripcion: descripcion.value
     })
     .then(() => router.push('/generos'))
 }
 
 async function getGenero() {
   await http.get(`${ENDPOINT}/${id}`).then((response) => {
-    ;(descripcion.value = response.data.descripcion)
+    descripcion.value = response.data.descripcion
   })
 }
 
@@ -53,12 +53,18 @@ onMounted(() => {
     <div class="row">
       <form @submit.prevent="editarGenero">
         <div class="form-floating mb-3">
-          <input type="text" class="form-control" v-model="descripcion" placeholder="Nombre" required />
+          <input
+            type="text"
+            class="form-control"
+            v-model="descripcion"
+            placeholder="Nombre"
+            required
+          />
           <label for="descripcion">Descripción</label>
         </div>
         <div class="text-center mt-3">
           <button type="submit" class="btn btn-primary btn-lg">
-            <font-awesome-icon icon="fa-solid fa-floppy-disk"/> Guardar
+            <font-awesome-icon icon="fa-solid fa-floppy-disk" /> Guardar
           </button>
         </div>
       </form>

@@ -44,7 +44,7 @@ onMounted(() => {
       <h2>Lista de Intérpretes</h2>
       <div class="col-12">
         <RouterLink to="/interpretes/crear">
-          <font-awesome-icon icon="fa-solid fa-plus"/> Crear Nuevo
+          <font-awesome-icon icon="fa-solid fa-plus" /> Crear Nuevo
         </RouterLink>
       </div>
     </div>
@@ -66,10 +66,10 @@ onMounted(() => {
             <td>{{ interprete.nacionalidad }}</td>
             <td>
               <button class="btn text-success" @click="toEdit(interprete.id)">
-                <font-awesome-icon icon="fa-solid fa-edit"/>
+                <font-awesome-icon icon="fa-solid fa-edit" />
               </button>
               <button class="btn text-danger" @click="toDelete(interprete.id)">
-                <font-awesome-icon icon="fa-solid fa-trash"/>
+                <font-awesome-icon icon="fa-solid fa-trash" />
               </button>
             </td>
           </tr>
