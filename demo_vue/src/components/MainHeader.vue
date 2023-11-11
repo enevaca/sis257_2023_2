@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import { useRoute } from 'vue-router'
+import { useAuthStore } from '@/stores/index'
+const authStore = useAuthStore()
 const location = useRoute()
 </script>
 
@@ -24,7 +26,10 @@ const location = useRoute()
     <div class="container">
       <a class="navbar-brand" href="index.html"> SIS257 Music </a>
 
-      <a href="ticket.html" class="btn custom-btn d-lg-none ms-auto me-4">Buy Ticket</a>
+      <RouterLink v-if="!authStore.token" to="/login" class="btn custom-btn d-lg-none ms-auto me-4"
+        >Iniciar Sesión</RouterLink
+      >
+      <a v-else @click="authStore.logout()" class="btn custom-btn d-lg-none ms-auto me-4">Salir</a>
 
       <button
         class="navbar-toggler"
@@ -47,25 +52,28 @@ const location = useRoute()
           <li class="nav-item">
             <RouterLink to="/about" class="nav-link click-scroll">Acerca De</RouterLink>
           </li>
-
-          <li class="nav-item">
-            <RouterLink to="/interpretes" class="nav-link click-scroll">Intérpretes</RouterLink>
-          </li>
-
-          <li class="nav-item">
-            <RouterLink to="/generos" class="nav-link click-scroll">Géneros</RouterLink>
-          </li>
-
-          <li class="nav-item">
-            <a class="nav-link click-scroll" href="#section_5">Albumes</a>
-          </li>
-
-          <li class="nav-item">
-            <a class="nav-link click-scroll" href="#section_6">Canciones</a>
-          </li>
+          <slot v-if="authStore.token">
+            <li class="nav-item">
+              <RouterLink to="/interpretes" class="nav-link click-scroll">Intérpretes</RouterLink>
+            </li>
+            <li class="nav-item">
+              <RouterLink to="/generos" class="nav-link click-scroll">Géneros</RouterLink>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link click-scroll" href="#section_5">Albumes</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link click-scroll" href="#section_6">Canciones</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link click-scroll" href="#">Hola {{ authStore.user }}</a>
+            </li>
+          </slot>
         </ul>
-
-        <a href="ticket.html" class="btn custom-btn d-lg-block d-none">Iniciar Sesión</a>
+        <RouterLink v-if="!authStore.token" to="/login" class="btn custom-btn d-lg-block d-none"
+          >Iniciar Sesión</RouterLink
+        >
+        <a v-else @click="authStore.logout()" class="btn custom-btn d-lg-block d-none">Salir</a>
       </div>
     </div>
   </nav>
